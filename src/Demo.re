@@ -1,10 +1,17 @@
 Js.log("hhhh");
-let b = [|[|1,2,3|], [|4,5,6|], [|7,8,9|]|];
-let a = Belt.Array.makeBy(3, (_) => (Belt.Array.make(3,0)));
-Js.log(a);
-let nRow = Belt.Array.getExn(a, 1);
-Js.log(nRow);
-Belt.Array.setExn(nRow, 2, 7);
-Js.log(nRow);
-Belt.Array.setExn(a, 1, nRow)
-Js.log(a);
+let dateStr = "1518-11-04 00:05";
+let yearStr = Js.String.substring(~from=0,~to_=4, dateStr);
+let monthStr = Js.String.substring(~from=5,~to_=7, dateStr);
+let dayStr = Js.String.substring(~from=8,~to_=10, dateStr);
+let hourStr = Js.String.substring(~from=11,~to_=13, dateStr);
+let minStr = Js.String.substringToEnd(~from=14,dateStr);
+let dt = Js.Date.utcWithYMDHM(~year= float_of_string(yearStr),
+                               ~month=float_of_string(monthStr),
+                               ~date=float_of_string(dayStr),
+                               ~hours=float_of_string(hourStr),
+                               ~minutes=float_of_string(minStr), ());
+Js.log(Js.Date.fromFloat(dt));
+let aStr = "[1518-04-28 23:59] Guard #1021 begins shift";
+let d = Belt.Array.range(10,15);
+
+Js.log(d);
