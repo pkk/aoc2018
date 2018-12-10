@@ -16,7 +16,7 @@ let parseActions = (line)  => {
 };
 
 let processNap = (sTime, eTime, timeSheetMap, currentGuard) => {
-  let minsToFill = Belt.Array.range(sTime, eTime);
+  let minsToFill = Belt.Array.range(sTime, eTime - 1);
   let timeSheet = switch (Belt.HashMap.Int.get(timeSheetMap, currentGuard)) {
   | Some(x) => x
   | _ => {id: currentGuard, totalSleep:0, minMap: Belt.HashMap.Int.make(~hintSize=60)}
@@ -37,13 +37,13 @@ let rec makeTimeSheetMaps = (currentGuard: int, startMin: int, endMin: int, arr:
       switch(first) {
       | Guard(x) => {
         if (currentGuard != -1) {
-          processNap(startMin, endMin == -1 ? 59 : endMin, timeSheetMap, currentGuard);
+          processNap(startMin, endMin == -1 ? 60 : endMin, timeSheetMap, currentGuard);
         };
         makeTimeSheetMaps(x, -1, -1, first, timeSheetMap, rest);
       };
       | Asleep(x) => {
         if (endMin != -1) {
-          processNap(startMin, endMin == -1 ? 59 : endMin, timeSheetMap, currentGuard);
+          processNap(startMin, endMin == -1 ? 60 : endMin, timeSheetMap, currentGuard);
         }
         makeTimeSheetMaps(currentGuard, x, -1, first, timeSheetMap, rest);
       };
@@ -54,7 +54,7 @@ let rec makeTimeSheetMaps = (currentGuard: int, startMin: int, endMin: int, arr:
 }
 
 let sortedTimeSheetArray = 
-    Node.Fs.readFileAsUtf8Sync("./src/day4/input1.txt") 
+    Node.Fs.readFileAsUtf8Sync("./src/day4/input2.txt") 
     |> Js.String.split("\n")
     |> ArrayLabels.to_list
     |> ListLabels.sort(~cmp=compare)
