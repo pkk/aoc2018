@@ -54,7 +54,7 @@ let rec makeTimeSheetMaps = (currentGuard: int, startMin: int, endMin: int, arr:
 }
 
 let sortedTimeSheetArray = 
-    Node.Fs.readFileAsUtf8Sync("./src/day4/input2.txt") 
+    Node.Fs.readFileAsUtf8Sync("./src/day4/input1.txt") 
     |> Js.String.split("\n")
     |> ArrayLabels.to_list
     |> ListLabels.sort(~cmp=compare)

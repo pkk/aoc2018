@@ -15,3 +15,10 @@ let aStr = "[1518-04-28 23:59] Guard #1021 begins shift";
 let d = Belt.Array.range(10,15);
 
 Js.log(d);
+
+let s1 = "a";
+let s2 = "A";
+let s3 = "a";
+Js.log(s1 == s3? "equal": "notequal");
+let charArr = Js.String.split("","abcd");
+Js.log(charArr);
