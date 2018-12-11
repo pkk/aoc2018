@@ -1,5 +1,5 @@
 
-let oppPolarity = (x:string, y:string): bool => x != y && Js.String.toLowerCase(x) == Js.String.toLowerCase(y);
+let oppPolarity = (x, y) => x != y && Js.String.toLowerCase(x) == Js.String.toLowerCase(y);
 
 let rec takeOutOppString= (index, line) => {
    if (index + 2 >= Js.String.length(line)) {
@@ -14,7 +14,6 @@ let rec takeOutOppString= (index, line) => {
    }
 }
 let filePath = Belt.Array.getExn(Node.Process.argv, 2);
-Js.log(Node.Fs.readFileAsUtf8Sync(filePath)|> Js.String.length)
 let part1 = 
 Node.Fs.readFileAsUtf8Sync(filePath)
 |> takeOutOppString(0)
