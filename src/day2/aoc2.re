@@ -5,7 +5,7 @@ type twoAndThrees = {
 };
 
 let lines = 
-    Node.Fs.readFileAsUtf8Sync("./src/day2/input1.txt") 
+    Node.Fs.readFileAsUtf8Sync(Node.Fs.readFileAsUtf8Sync(Belt.Array.getExn(Node.Process.argv,2))) 
     |> Js.String.split("\n");
 
 let makeTwosAndThrees = (charMap: Belt.HashMap.String.t(int)) => {

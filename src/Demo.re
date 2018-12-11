@@ -16,9 +16,11 @@ let d = Belt.Array.range(10,15);
 
 Js.log(d);
 
-let s1 = "a";
-let s2 = "A";
-let s3 = "a";
-Js.log(s1 == s3? "equal": "notequal");
-let charArr = Js.String.split("","abcd");
-Js.log(charArr);
+let rec range = (i,j) => i > j ? [] : [i,...(range(i+1, j))];
+let charRange = (x: char,y: char): list(string) => Belt.List.map(range(Char.code(x), Char.code(y)), Js.String.fromCharCode);
+let stringRage = charRange('a','z');
+
+let oppString = (x,y) => x != y && Js.String.toLowerCase(x) == Js.String.toLowerCase(y);
+Js.log(Js.String.replace("a", "b","aabb"));
+Js.String.replaceByRe(Js.Re.fromString(""), "", "aabb");
+Js.log(Js.String.substring(~from=0,~to_=2, "absba") ++ "" ++ Js.String.substringToEnd(~from=2+1,"absba"));
